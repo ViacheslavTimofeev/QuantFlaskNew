@@ -10,8 +10,18 @@ from certificate import certificate
 from dogovor import dogovor
 app = Flask(__name__)
 
+@app.route('/')
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
 
-@app.route('/', methods=['post', 'get'])
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
+
+@app.route('/index', methods=['post', 'get'])
 def index():
     d1 = 0
     d2 = 0
@@ -22,7 +32,7 @@ def index():
         d2 = request.form.get("date2")
         choose = request.form.get("browser")
         certificate(name, fio, d1, d2, choose)
-    return render_template("Index.html")
+    return render_template("certificate1.html")
 
 
 @app.route('/dogovor', methods=['post', 'get'])
@@ -36,7 +46,7 @@ def randomf():
         d2 = request.form.get("date2")
         choose = request.form.get("browser")
         dogovor(name, fio, d1, d2, choose)
-    return render_template("dogovor.html")
+    return render_template("dogovor1.html")
 
 
 if __name__ == '__main__':
