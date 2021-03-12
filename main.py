@@ -8,6 +8,7 @@ from zipfile import ZipFile
 from os import path
 from certificate import certificate
 from dogovor import dogovor
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -45,7 +46,8 @@ def randomf():
         d1 = request.form.get("date1")
         d2 = request.form.get("date2")
         choose = request.form.get("browser")
-        dogovor(name, fio, d1, d2, choose)
+        birthdate = request.form.get("birthdate")
+        dogovor(name, fio, d1, d2, choose, birthdate)
     return render_template("dogovor1.html")
 
 
